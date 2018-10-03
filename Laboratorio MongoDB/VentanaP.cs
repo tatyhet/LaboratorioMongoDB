@@ -49,14 +49,19 @@ namespace Laboratorio_MongoDB
         public String obtenerActores(List<String> listaActores)
         {
             String salida= "";
-            for (int i=0;i!=listaActores.Count;i++)
+            for (int i=0;listaActores!=null&&i!=listaActores.Count;i++)
             {
-                salida = salida +  listaActores[i]+" - " ;
+                if (i+1 == listaActores.Count)
+                    salida = salida + listaActores[i];
+                else
+                    salida = salida +  listaActores[i]+" , " ;
             }
             return salida;
         }
         public void leerBD()
         {
+            dgvPeliculas.Rows.Clear();
+            dgvPeliculas.Columns.Clear();
             BindingList<Pelicula> peliculas = conexionMongo.leerPeliculas();
             llenarColumnasPeliculas();
             llenarPeliculas(peliculas);
@@ -74,9 +79,39 @@ namespace Laboratorio_MongoDB
             int annio = Convert.ToInt32( tbAnnio.Text);
             int duracion = Convert.ToInt32(tbDuracion.Text);
             string productor = tbProductor.Text;
+            List<string> actores = (tbActores.Text).Split(',').ToList<string>();
 
             //List<string> nombre = ;
-            conexionMongo.modificarPelicula(id,nombre,genero,direccion,franquicia,pais,annio,duracion,productor,null);
+            conexionMongo.modificarPelicula(id,nombre,genero,direccion,franquicia,pais,annio,duracion,productor,actores);
+            MessageBox.Show("Película modificada");
+            leerBD();
+        }
+
+        private void btnInsertar_Click(object sender, EventArgs e)
+        {            
+            string nombre = tbNombre.Text;
+            string genero = tbGenero.Text;
+            string direccion = tbDirector.Text;
+            string franquicia = tbFranquicia.Text;
+
+            string pais = tbPais.Text;
+            int annio = Convert.ToInt32(tbAnnio.Text);
+            int duracion = Convert.ToInt32(tbDuracion.Text);
+            string productor = tbProductor.Text;
+            List<string> actores = (tbActores.Text).Split(',').ToList<string>();
+
+            conexionMongo.insertarPelicula(nombre,genero,direccion,franquicia,pais,annio,duracion,productor,actores);
+
+            MessageBox.Show("Película insertada");
+            leerBD();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ObjectId id = ObjectId.Parse(Convert.ToString(dgvPeliculas.CurrentRow.Cells[0].Value));
+            conexionMongo.eliminarPelicula(id);
+            MessageBox.Show("Película eliminada");
+            leerBD();
         }
     }
 }

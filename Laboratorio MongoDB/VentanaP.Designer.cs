@@ -49,6 +49,8 @@
             this.tbPais = new System.Windows.Forms.TextBox();
             this.tbFranquicia = new System.Windows.Forms.TextBox();
             this.tbDirector = new System.Windows.Forms.TextBox();
+            this.btnInsertar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeliculas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,11 +60,13 @@
             this.dgvPeliculas.AllowUserToDeleteRows = false;
             this.dgvPeliculas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPeliculas.Location = new System.Drawing.Point(12, 12);
+            this.dgvPeliculas.MultiSelect = false;
             this.dgvPeliculas.Name = "dgvPeliculas";
             this.dgvPeliculas.ReadOnly = true;
             this.dgvPeliculas.RowTemplate.Height = 24;
             this.dgvPeliculas.RowTemplate.ReadOnly = true;
             this.dgvPeliculas.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPeliculas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPeliculas.Size = new System.Drawing.Size(1395, 268);
             this.dgvPeliculas.TabIndex = 1;
             // 
@@ -70,7 +74,7 @@
             // 
             this.btnModificar.Location = new System.Drawing.Point(367, 547);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(203, 47);
+            this.btnModificar.Size = new System.Drawing.Size(102, 66);
             this.btnModificar.TabIndex = 2;
             this.btnModificar.Text = "Modificar película seleccionada";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -89,9 +93,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 283);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 32);
+            this.label1.Size = new System.Drawing.Size(203, 32);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Modificar";
+            this.label1.Text = "Administración";
             // 
             // label2
             // 
@@ -239,11 +243,33 @@
             this.tbDirector.Size = new System.Drawing.Size(203, 22);
             this.tbDirector.TabIndex = 21;
             // 
+            // btnInsertar
+            // 
+            this.btnInsertar.Location = new System.Drawing.Point(475, 547);
+            this.btnInsertar.Name = "btnInsertar";
+            this.btnInsertar.Size = new System.Drawing.Size(95, 66);
+            this.btnInsertar.TabIndex = 22;
+            this.btnInsertar.Text = "Insertar nueva película";
+            this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(1020, 318);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(387, 27);
+            this.btnEliminar.TabIndex = 23;
+            this.btnEliminar.Text = "Eliminar película seleccionada";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // VentanaP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1431, 596);
+            this.ClientSize = new System.Drawing.Size(1431, 615);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnInsertar);
             this.Controls.Add(this.tbDirector);
             this.Controls.Add(this.tbFranquicia);
             this.Controls.Add(this.tbPais);
@@ -295,6 +321,8 @@
         private System.Windows.Forms.TextBox tbPais;
         private System.Windows.Forms.TextBox tbFranquicia;
         private System.Windows.Forms.TextBox tbDirector;
+        private System.Windows.Forms.Button btnInsertar;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }
 

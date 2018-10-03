@@ -23,9 +23,9 @@ namespace Laboratorio_MongoDB
         private string productora;
         private List<string> actores;
 
-        public Pelicula(ObjectId id, string nombre, string genero, string director, string franquicia, string paisP, int annioEstreno, int duracion, string productora, List<string> actores)
+        public Pelicula( string nombre, string genero, string director, string franquicia, string paisP, int annioEstreno, int duracion, string productora, List<string> actores)
         {
-            this.id = id;
+           
             this.nombre = nombre;
             this.genero = genero;
             this.director = director;
