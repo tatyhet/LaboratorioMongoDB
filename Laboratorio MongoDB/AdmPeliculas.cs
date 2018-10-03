@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Laboratorio_MongoDB
 {
-    public partial class VentanaP : Form
+    public partial class AdmPeliculas : Form
     {
         private Conexion conexionMongo;
-        public VentanaP()
+        public AdmPeliculas()
         {
             InitializeComponent();            
             conexionMongo = new Conexion();            
@@ -109,7 +109,7 @@ namespace Laboratorio_MongoDB
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             ObjectId id = ObjectId.Parse(Convert.ToString(dgvPeliculas.CurrentRow.Cells[0].Value));
-            conexionMongo.eliminarPelicula(id);
+            conexionMongo.eliminarElemento(id,0);
             MessageBox.Show("Película eliminada");
             leerBD();
         }

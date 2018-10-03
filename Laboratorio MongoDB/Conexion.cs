@@ -32,6 +32,18 @@ namespace Laboratorio_MongoDB
             }
             return doclist;
         }
+
+        public BindingList<Productora> leerProductoras()
+        {
+            var collection = database.GetCollection<Productora>("Productoras");
+            BindingList<Productora> doclist = new BindingList<Productora>();
+            foreach (var deger in collection.FindAll())
+            {
+                doclist.Add(deger);
+            }
+            return doclist;
+        }
+
         public void modificarPelicula(ObjectId id, string nNombre, string nGenero, string nDirector, string nFranquicia, string nPais,
             int nAnnio, int nDuracion, string nProductor, List<string> nActores)
         {
@@ -54,6 +66,19 @@ namespace Laboratorio_MongoDB
 
         }
 
+        public void modificarProductora(ObjectId id, string nNombre,int nAnnio, string nWeb)
+        {
+            var collection = database.GetCollection<Productora>("Productoras");
+            var query = from Productora in collection.AsQueryable<Productora>()
+                        where Productora.Id == id
+                        select Productora;
+            var mongoQuery = ((MongoQueryable<Productora>)query).GetMongoQuery();
+            var update = Update.Set("Nombre", nNombre);
+            update.Set("AnnioFundacion", nAnnio);
+            update.Set("DirWeb", nWeb);
+            collection.Update(mongoQuery, update);
+        }
+
         public void insertarPelicula(string nNombre, string nGenero, string nDirector, string nFranquicia, string nPais,
             int nAnnio, int nDuracion, string nProductor, List<string> nActores)
         {
@@ -62,10 +87,21 @@ namespace Laboratorio_MongoDB
             collection.Insert(nuevaP);
         }
 
-        public void eliminarPelicula(ObjectId id)
+        public void insertarProductora(string nNombre, int nAnnioFundacion, string nWeb)
+        {
+            var collection = database.GetCollection<BsonDocument>("Productoras");
+            Productora nuevaP = new Productora(nNombre, nAnnioFundacion, nWeb);
+            collection.Insert(nuevaP);
+        }
+
+        public void eliminarElemento(ObjectId id,byte filtradorBorrado)
         {
             var query = Query.EQ("_id",id);
-            var collection = database.GetCollection<BsonDocument>("Peliculas");
+            MongoCollection<BsonDocument> collection= null;
+            if(filtradorBorrado==0)
+                 collection = database.GetCollection<BsonDocument>("Peliculas");
+            else
+                collection = database.GetCollection<BsonDocument>("Productoras");
             collection.Remove(query);
         }
     }

@@ -16,7 +16,7 @@ namespace Laboratorio_MongoDB
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VentanaP());
+            Application.Run(new VentanaPrincipal());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Laboratorio_MongoDB
 {
-    partial class VentanaP
+    partial class AdmPeliculas
     {
         /// <summary>
         /// Variable del diseñador necesaria.
