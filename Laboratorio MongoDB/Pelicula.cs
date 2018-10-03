@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Laboratorio_MongoDB
 {
-    class Pelicula
+    public class Pelicula
     {
         private ObjectId id;
         private string nombre;
@@ -22,6 +22,20 @@ namespace Laboratorio_MongoDB
         private int duracion;
         private string productora;
         private List<string> actores;
+
+        public Pelicula(ObjectId id, string nombre, string genero, string director, string franquicia, string paisP, int annioEstreno, int duracion, string productora, List<string> actores)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            this.genero = genero;
+            this.director = director;
+            this.franquicia = franquicia;
+            this.paisP = paisP;
+            this.annioEstreno = annioEstreno;
+            this.duracion = duracion;
+            this.productora = productora;
+            this.actores = actores;
+        }
 
         public ObjectId Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }

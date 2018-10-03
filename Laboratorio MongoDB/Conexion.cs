@@ -6,9 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Bson;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
-using System.ComponentModel;
 
 namespace Laboratorio_MongoDB
 {
@@ -33,7 +32,27 @@ namespace Laboratorio_MongoDB
             }
             return doclist;
         }
+        public void modificarPelicula(ObjectId id, string nNombre, string nGenero, string nDirector, string nFranquicia, string nPais,
+            int nAnnio, int nDuracion, string nProductor, List<string> nActores)
+        {
+            var collection = database.GetCollection<Pelicula>("Peliculas");
+            var query = from Pelicula in collection.AsQueryable<Pelicula>()
+                        where Pelicula.Id == id
+                        select Pelicula;
+            var mongoQuery = ((MongoQueryable<Pelicula>)query).GetMongoQuery();
+            var update = Update.Set("Nombre",nNombre);
+            update.Set("Genero", nGenero);
+            update.Set("Director",nDirector);
+            update.Set("Franquicia",nFranquicia);
+            update.Set("PaisP",nPais);
+            update.Set("AnnioEstreno",nAnnio);
+            update.Set("Duracion",nDuracion);
+            update.Set("Productora", nProductor);            
 
-        
+            collection.Update(mongoQuery,update);
+                        
+        }
+
+
     }
 }
