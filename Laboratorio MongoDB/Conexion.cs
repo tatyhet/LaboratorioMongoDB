@@ -104,5 +104,23 @@ namespace Laboratorio_MongoDB
                 collection = database.GetCollection<BsonDocument>("Productoras");
             collection.Remove(query);
         }
+        public List<Pelicula> buscarNombre(string nombre)
+        {
+            MongoCollection<Pelicula> collection = database.GetCollection<Pelicula>("Peliculas");
+            var query = Query<Pelicula>.EQ(u => u.Nombre, nombre);
+
+            List<Pelicula> list = collection.Find(query).ToList<Pelicula>();
+            return list;
+        }
+        public List<Pelicula> buscarFranquicia(string franquicia)
+        {
+            MongoCollection<Pelicula> collection = database.GetCollection<Pelicula>("Peliculas");
+            var query = Query<Pelicula>.EQ(u => u.Franquicia, franquicia);
+
+            List<Pelicula> list = collection.Find(query).ToList<Pelicula>();
+            return list;
+        }
+
+
     }
 }

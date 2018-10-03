@@ -30,6 +30,7 @@
         {
             this.btnPeli = new System.Windows.Forms.Button();
             this.btnProdu = new System.Windows.Forms.Button();
+            this.btnInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPeli
@@ -52,11 +53,22 @@
             this.btnProdu.UseVisualStyleBackColor = true;
             this.btnProdu.Click += new System.EventHandler(this.btnProdu_Click);
             // 
+            // btnInfo
+            // 
+            this.btnInfo.Location = new System.Drawing.Point(150, 131);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(496, 31);
+            this.btnInfo.TabIndex = 2;
+            this.btnInfo.Text = "Consultas de Información";
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
             // VentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.btnProdu);
             this.Controls.Add(this.btnPeli);
             this.Name = "VentanaPrincipal";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.Button btnPeli;
         private System.Windows.Forms.Button btnProdu;
+        private System.Windows.Forms.Button btnInfo;
     }
 }

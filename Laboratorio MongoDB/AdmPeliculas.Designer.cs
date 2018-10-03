@@ -263,7 +263,7 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // VentanaP
+            // AdmPeliculas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -291,7 +291,7 @@
             this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dgvPeliculas);
-            this.Name = "VentanaP";
+            this.Name = "AdmPeliculas";
             this.Text = "Peliculas";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeliculas)).EndInit();
             this.ResumeLayout(false);

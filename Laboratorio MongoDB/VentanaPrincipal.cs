@@ -32,5 +32,13 @@ namespace Laboratorio_MongoDB
             ventanaProductoras.Closed += (s, args) => this.Close();
             ventanaProductoras.Show();
         }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var ventanaInfo = new ventanaInformacion();
+            ventanaInfo.Closed += (s, args) => this.Close();
+            ventanaInfo.Show();
+        }
     }
 }
