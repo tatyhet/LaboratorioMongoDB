@@ -120,6 +120,13 @@ namespace Laboratorio_MongoDB
             List<Pelicula> list = collection.Find(query).ToList<Pelicula>();
             return list;
         }
+        public List<Pelicula> buscarEntreAnnios(int annioI,int annioF)
+        {
+            MongoCollection<Pelicula> collection = database.GetCollection<Pelicula>("Peliculas");
+            var query = Query<Pelicula>.Where(u => u.AnnioEstreno>= annioI && u.AnnioEstreno <= annioF);
+            List<Pelicula> list = collection.Find(query).ToList<Pelicula>();
+            return list;
+        }
 
 
     }

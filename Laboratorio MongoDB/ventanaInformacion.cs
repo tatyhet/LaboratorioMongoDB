@@ -73,10 +73,18 @@ namespace Laboratorio_MongoDB
             dgvInfo.Columns.Clear();
             List<Pelicula> peliculas= new List<Pelicula>();
             if (tbNombre.Text != "")
+            {
                 peliculas = conexionMongo.buscarNombre(tbNombre.Text);
-            else if (tbFranquicia.Text != "")
+                MessageBox.Show("Buscando por nombre...");
+            }else if (tbFranquicia.Text != "")
+            {
                 peliculas = conexionMongo.buscarFranquicia(tbFranquicia.Text);
-
+                MessageBox.Show("Buscando por franquicia...");
+            }else if (cbAFecha.SelectedIndex> -1 && cbDFecha.SelectedIndex> -1)
+            {
+                peliculas = conexionMongo.buscarEntreAnnios(Convert.ToInt32(cbDFecha.SelectedItem),Convert.ToInt32 (cbAFecha.SelectedItem));
+                MessageBox.Show("Buscando por Años...");
+            }
             llenarColumnasPeliculas();
             llenarPeliculas(peliculas);
         }
