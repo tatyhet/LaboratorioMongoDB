@@ -120,6 +120,17 @@ namespace Laboratorio_MongoDB
             List<Pelicula> list = collection.Find(query).ToList<Pelicula>();
             return list;
         }
+
+        public List<Pelicula> buscarProductora(string productoraF)
+        {
+            MongoCollection<Pelicula> collection = database.GetCollection<Pelicula>("Peliculas");
+            var query = Query<Pelicula>.EQ(u => u.Productora, productoraF);           
+
+            var cursor = collection.Find(query);
+            cursor.SetFields(Fields.Include("Nombre","Genero","AnnioEstreno"));
+            return cursor.ToList<Pelicula>();
+        }
+
         public List<Pelicula> buscarEntreAnnios(int annioI,int annioF)
         {
             MongoCollection<Pelicula> collection = database.GetCollection<Pelicula>("Peliculas");
@@ -128,6 +139,43 @@ namespace Laboratorio_MongoDB
             return list;
         }
 
+        public int contarPeliculas()
+        {
+            MongoCollection<Pelicula> collection = database.GetCollection<Pelicula>("Peliculas");            
+            var contador = collection.Count();
+            return Convert.ToInt32(contador);
+        }
+
+        public List<Pelicula> obtenerMinimoMaximo()
+        {
+            MongoCollection<Pelicula> collection = database.GetCollection<Pelicula>("Peliculas");
+            var min = collection.FindAll().SetSortOrder(SortBy.Ascending("Duracion")).SetLimit(1).FirstOrDefault();
+            var max = collection.FindAll().SetSortOrder(SortBy.Descending("Duracion")).SetLimit(1).FirstOrDefault();
+            List<Pelicula> listaSalida = new List<Pelicula>();
+            listaSalida.Add(min);
+            listaSalida.Add(max);
+            return listaSalida;
+        }       
+        public double promedioProductora(string productora)
+        {
+            
+
+            MongoCollection<Pelicula> collection = database.GetCollection<Pelicula>("Peliculas");
+            var query = Query<Pelicula>.EQ(u => u.Productora, productora);
+
+            var cursor = collection.Find(query);
+            double promedio;
+            try
+            {
+                 promedio = cursor.Average(u => u.Duracion);
+            }catch(Exception e)
+            {
+                return 0;
+            }
+            
+            
+            return promedio;
+        }
 
     }
 }

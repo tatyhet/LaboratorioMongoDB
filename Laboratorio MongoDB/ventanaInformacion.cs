@@ -23,6 +23,10 @@ namespace Laboratorio_MongoDB
                 cbAFecha.Items.Add(i);
                 cbDFecha.Items.Add(i);
             }
+            lblCantPeli.Text = conexionMongo.contarPeliculas()+"";
+            List<Pelicula> minimoMaximo = conexionMongo.obtenerMinimoMaximo();
+            lblMenorP.Text = minimoMaximo[0].Nombre;
+            lblMayorP.Text = minimoMaximo[1].Nombre;
         }
 
 
@@ -69,6 +73,7 @@ namespace Laboratorio_MongoDB
         }
         public void leerBD()
         {
+            dgvInfo.DataSource = null;
             dgvInfo.Rows.Clear();
             dgvInfo.Columns.Clear();
             List<Pelicula> peliculas= new List<Pelicula>();
@@ -84,9 +89,21 @@ namespace Laboratorio_MongoDB
             {
                 peliculas = conexionMongo.buscarEntreAnnios(Convert.ToInt32(cbDFecha.SelectedItem),Convert.ToInt32 (cbAFecha.SelectedItem));
                 MessageBox.Show("Buscando por Años...");
+            }else if (tbProductora.Text!= "")
+            {
+                peliculas = conexionMongo.buscarProductora(tbProductora.Text);
+                MessageBox.Show("Buscando por productora");
+                dgvInfo.DataSource = peliculas;
+                return;
             }
             llenarColumnasPeliculas();
             llenarPeliculas(peliculas);
+        }
+
+        private void btnObtenerPromedio_Click(object sender, EventArgs e)
+        {
+                lblPromedio.Text = conexionMongo.promedioProductora(tbProductoraP.Text) + "";
+             
         }
     }
 }
